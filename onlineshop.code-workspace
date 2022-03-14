@@ -6,11 +6,11 @@
         },
         {
             "name": "server",
-            "path": "source/server"
+            "path": "server"
         },
         {
             "name": "client",
-            "path": "source/client"
+            "path": "client"
         }
     ],
     "settings": {

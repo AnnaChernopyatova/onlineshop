@@ -1,0 +1,31 @@
+image: node
+
+eslint:
+  tags:
+    - docker
+  stage: build_shop
+  script:
+    - cd ./onlineshop/source/server/
+    - npm ci
+    - npm run lint
+    - cd ../../
+    - cd ./source/client/
+    - npm ci
+    - npm run lint
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+      changes:
+        - onlineshop/**/*
+
+test-server:
+  tags:
+    - docker
+  stage: build_shop
+  script:
+    - cd ./onlineshop/source/server/
+    - npm ci
+    - npm run test
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+      changes:
+        - onlineshop/**/*
